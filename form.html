@@ -33,7 +33,9 @@
           <div class="userDetails" ng-class="{ 'has-error' : contactForm.email.$invalid && !contactForm.email.$pristine }">
 				  <label for="email">Email: </label>
 				    <div class="input-div">
-					    <span class="input-icon">@</span>
+					    <div class="input-icon">
+					     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+					     </div>
 					    <input id="email" class="input-field" type="email" ng-model="email" name="email" placeholder="Email" required>
 				    </div>
 				    <p ng-show="contactForm.email.$invalid && !contactForm.email.$pristine" class="error-msg">Enter your valid email.</p>
@@ -60,7 +62,7 @@
 				<p ng-show="contactForm.userMessage.$error.maxlength" class="error-msg">Besked er for lang</p>
 				<div class="input-div">
 				     <div class="input-icon">
-				     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+				     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 				     </div>
 			        <textarea id="userMessage" ng-model="userMessage" name="userMessage" class="input-field" ng-minlength="20" ng-maxlength="200" rows="15" placeholder="Skriv besked her" required></textarea>
 	                        </div>
