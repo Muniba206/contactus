@@ -1,0 +1,26 @@
+body {
+	padding-top: 60px;
+	padding-bottom: 50px;
+	font-family: 'Roboto', sans-serif;
+}
+
+#form-wrapper h3{
+	text-align: center;
+}
+
+form {
+	height: 300px;
+	width: 60%;
+	margin: 0 auto;
+
+}
+textarea {
+	resize: none;
+	overflow: auto;
+}
+
+#submitMessage {
+	text-align: center;
+	border: 2px solid #333;
+	padding: 5%;
+}
