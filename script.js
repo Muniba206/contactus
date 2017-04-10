@@ -1,5 +1,5 @@
 // creating app
-var app = angular.module("contactForm",[]);
+var app = angular.module("contact",[]);
 
 // creating form controller 
 
