@@ -1,0 +1,79 @@
+<!Doctype HTML>
+<html>
+      <head>
+            <meta charset="UTF-8">
+            <title>AngularJS Contact Form</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+            <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+         <!-- Start of Angular App -->
+    <body ng-app="contact" ng-controller="contactCtrl">
+           
+           <!-- Start of Contact Form -->
+           <div id="form" class="container">
+           <form name="contactForm" ng-submit="submitForm(contactForm.$valid)" ng-class="{'has-success' : contactForm.$valid}" ng-hide="contactForm.$submitted" novalidate>
+          
+          <!-- ------------------------------User Details------------------------ -->
+           
+           
+           <!-- Name Input -->
+           <div class="userDetails" ng-class="{ 'has-error' : contactForm.name.$invalid && !contactForm.name.$pristine }"
+           <label for="name"> Name: </label>
+             <div class="input-div">
+					     <div class="input-icon">
+					     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					     </div>
+					     <input id="name" class="input-field" type="text" ng-model="name" name="name" placeholder="Navn" required >
+				     </div>
+             <p ng-show="contactForm.name.$invalid && !contactForm.name.$pristine" class="error-msg">Your name is required.</p>
+			    </div>
+          
+          <!-- E-mail Input-->
+          <div class="userDetails" ng-class="{ 'has-error' : contactForm.email.$invalid && !contactForm.email.$pristine }">
+				  <label for="email">Email: </label>
+				    <div class="input-div">
+					    <span class="input-icon">@</span>
+					    <input id="email" class="input-field" type="email" ng-model="email" name="email" placeholder="Email" required>
+				    </div>
+				    <p ng-show="contactForm.email.$invalid && !contactForm.email.$pristine" class="error-msg">Enter your valid email.</p>
+			   </div>
+         
+         <!-- Phone Input -->
+         
+         <div class="userDetails" ng-class="{ 'has-error' : contactForm.phone.$invalid && !contactForm.phone.$pristine }">
+				<label for="phone">Phone Nummer: </label>
+				<div class="input-div">
+					<div class="input-icon">
+						<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+					</div>
+					<input id="phone" class="input-field" type="text" ng-model="phone" name="phone" placeholder="Phone nummer feks. 4591755748"  ng-pattern="nums" required >
+				</div>
+				<p ng-show="contactForm.phone.$error.pattern && !contactForm.phone.$pristine" class="error-msg">Please enter a valid phone number</p>
+			</div>
+      
+      <!-- Message -->
+      
+      <div class="userDetails" ng-class="{ 'has-error' : contactForm.userMessage.$invalid && !contactForm.userMessage.$pristine, 'has-success' : contactForm.userMessage.$valid && !contactForm.userMessage.$pristine }">
+				<label for="userMessage">Besked</label>
+				<p ng-show="contactForm.userMessage.$error.minlength" class="error-msg">Besked er forkort ...</p>
+				<p ng-show="contactForm.userMessage.$error.maxlength" class="error-msg">Besked er for lang</p>
+				<textarea id="userMessage" ng-model="userMessage" name="userMessage" class="input-field" ng-minlength="20" ng-maxlength="200" rows="15" placeholder="Skriv besked her" required></textarea>
+			</div>
+    
+     <!-- Button -->    
+     <button name="submit" class="btn btn-success btn-lg" type="submit" ng-disabled="contactForm.$invalid">Send</button>
+	 	</form>
+  	</div>
+    
+    <!-- Confirmation Message -->
+    <div id="submitMessage" class="container" ng-show="contactForm.$submitted">
+        
+        <h1>Tak for besked!</h1>
+    </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+    
+
+</body>
+</html>
