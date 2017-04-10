@@ -58,12 +58,19 @@
 				<label for="userMessage">Besked</label>
 				<p ng-show="contactForm.userMessage.$error.minlength" class="error-msg">Besked er forkort ...</p>
 				<p ng-show="contactForm.userMessage.$error.maxlength" class="error-msg">Besked er for lang</p>
-				<textarea id="userMessage" ng-model="userMessage" name="userMessage" class="input-field" ng-minlength="20" ng-maxlength="200" rows="15" placeholder="Skriv besked her" required></textarea>
-			</div>
+				<div class="input-div">
+				     <div class="input-icon">
+				     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+				     </div>
+			        <textarea id="userMessage" ng-model="userMessage" name="userMessage" class="input-field" ng-minlength="20" ng-maxlength="200" rows="15" placeholder="Skriv besked her" required></textarea>
+	                        </div>
+	      </div>
+	      
     
      <!-- Button -->    
      <button name="submit" class="btn btn-success btn-lg" type="submit" ng-disabled="contactForm.$invalid">Send</button>
-	 	</form>
+	 
+					</form>
   	</div>
     
     <!-- Confirmation Message -->
