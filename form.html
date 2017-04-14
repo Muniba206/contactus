@@ -45,7 +45,7 @@
       <div ng-show="!user.agree || !user.agreeSign">Please agree and sign.</div>
     </div>
 
-    <input type="button" ng-click="reset(form)" value="Reset" />
+	    <button type="reset" ng-click="reset(form)" value="Reset">Reset</button>
     <button name="submit" class="btn btn-success btn-lg" type="submit" ng-disabled="contactForm.$invalid">Send</button>
   </form>
     
