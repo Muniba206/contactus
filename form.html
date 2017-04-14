@@ -12,13 +12,14 @@
            
            <!-- Start of Contact Form -->
            <div id="form-container" class="container">
-    <form name="form" class="css-form" novalidate>
+    <form name="form" class="css-form" ng-hide="contact.$submitted" novalidate>
     <label>Name:
-      <input type="text" ng-model="user.name" name="uName" required="" />
+      <input type="text" ng-model="user.name" name="uName" maxlength="20"  pattern="[a-zA-Z]+" ng-pattern-restrict required />
     </label>
     <br />
     <div ng-show="form.$submitted || form.uName.$touched">
-      <div ng-show="form.uName.$error.required">Tell us your name.</div>
+    <div ng-show="form.uName.$error.required">Enter your name</div>
+	    <div ng-show="form.uName.$error.correct">Only letters are allowed !</div>
     </div>
 
     <label>E-mail:
