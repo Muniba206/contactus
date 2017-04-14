@@ -12,68 +12,42 @@
            
            <!-- Start of Contact Form -->
            <div id="form-container" class="container">
-           <form name="contactForm" method="post" ng-submit="submitForm(contactForm.$valid)" ng-class="{'has-success' : contactForm.$valid}" ng-hide="contactForm.$submitted" novalidate>
-          
-          <!-- ------------------------------User Details------------------------ -->
-           
-           
-           <!-- Name Input -->
-           <div class="userDetails" ng-class="{ 'has-error' : contactForm.name.$invalid && !contactForm.name.$pristine }"
-           <label for="name">Navn: </label>
-             <div class="input-div">
-					     <div class="input-icon">
-					     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					     </div>
-					     <input id="name" class="input-field" type="text" ng-model="name" name="name" placeholder="Navn" required >
-				     </div>
-             <p ng-show="contactForm.name.$invalid && !contactForm.name.$pristine" class="error-msg">Your name is required.</p>
-			    </div>
-          
-          <!-- E-mail Input-->
-          <div class="userDetails" ng-class="{ 'has-error' : contactForm.email.$invalid && !contactForm.email.$pristine }">
-				  <label for="email">Email: </label>
-				    <div class="input-div">
-					    <div class="input-icon">
-					     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-					     </div>
-					    <input id="email" class="input-field" type="email" ng-model="email" name="email" placeholder="Email" required>
-				    </div>
-				    <p ng-show="contactForm.email.$invalid && !contactForm.email.$pristine" class="error-msg">Enter your valid email.</p>
-			   </div>
-         
-         <!-- Phone Input -->
-         
-         <div class="userDetails" ng-class="{ 'has-error' : contactForm.phone.$invalid && !contactForm.phone.$pristine }">
-				<label for="phone">Phone Nummer: </label>
-				<div class="input-div">
-					<div class="input-icon">
-						<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
-					</div>
-					<input id="phone" class="input-field" type="text" ng-model="phone" name="phone" placeholder="Ti digit feks. 4591755748"  ng-pattern="nums" required >
-				</div>
-				<p ng-show="contactForm.phone.$error.pattern && !contactForm.phone.$pristine" class="error-msg">Please enter a valid phone number</p>
-			</div>
-      
-      <!-- Message -->
-      
-      <div class="userDetails" ng-class="{ 'has-error' : contactForm.userMessage.$invalid && !contactForm.userMessage.$pristine, 'has-success' : contactForm.userMessage.$valid && !contactForm.userMessage.$pristine }">
-				<label for="userMessage">Besked</label>
-				<p ng-show="contactForm.userMessage.$error.minlength" class="error-msg">Besked er forkort ...</p>
-				<p ng-show="contactForm.userMessage.$error.maxlength" class="error-msg">Besked er for lang</p>
-				<div class="input-div">
-				     <div class="input-icon">
-				     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-				     </div>
-			        <textarea id="userMessage" ng-model="userMessage" name="userMessage" class="input-field" ng-minlength="20" ng-maxlength="180" rows="12" placeholder="Skriv besked her" required></textarea>
-	                        </div>
-	      </div>
-	      
-    
-     <!-- Button -->    
-     <button name="submit" class="btn btn-success btn-lg" type="submit" ng-disabled="contactForm.$invalid">Send</button>
-	 
-					</form>
-  	</div>
+    <form name="form" class="css-form" novalidate>
+    <label>Name:
+      <input type="text" ng-model="user.name" name="uName" required="" />
+    </label>
+    <br />
+    <div ng-show="form.$submitted || form.uName.$touched">
+      <div ng-show="form.uName.$error.required">Tell us your name.</div>
+    </div>
+
+    <label>E-mail:
+      <input type="email" ng-model="user.email" name="uEmail" required="" />
+    </label>
+    <br />
+    <div ng-show="form.$submitted || form.uEmail.$touched">
+      <span ng-show="form.uEmail.$error.required">Tell us your email.</span>
+      <span ng-show="form.uEmail.$error.email">This is not a valid email.</span>
+    </div>
+
+    Gender:
+    <label><input type="radio" ng-model="user.gender" value="male" />male</label>
+    <label><input type="radio" ng-model="user.gender" value="female" />female</label>
+    <br />
+    <label>
+    <input type="checkbox" ng-model="user.agree" name="userAgree" required="" />
+
+    I agree:
+    </label>
+    <input ng-show="user.agree" type="text" ng-model="user.agreeSign" required="" />
+    <br />
+    <div ng-show="form.$submitted || form.userAgree.$touched">
+      <div ng-show="!user.agree || !user.agreeSign">Please agree and sign.</div>
+    </div>
+
+    <input type="button" ng-click="reset(form)" value="Reset" />
+    <button name="submit" class="btn btn-success btn-lg" type="submit" ng-disabled="contactForm.$invalid">Send</button>
+  </form>
     
     <!-- Confirmation Message -->
     <div id="submitMessage" class="container" ng-show="contactForm.$submitted">
