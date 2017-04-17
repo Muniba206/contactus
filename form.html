@@ -2,52 +2,120 @@
 <html>
       <head>
             <meta charset="UTF-8">
-            <title>AngularJS Contact Form</title>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-            <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-            <link rel="stylesheet" type="text/css" href="style.css">
+            <title>Kontakt Os</title>
+            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" >
+            <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+            <link href="style.css"rel="stylesheet" type="text/css" >
+			<script>
+
+</script>
     </head>
          <!-- Start of Angular App -->
     <body ng-app="contact" ng-controller="contactCtrl">
+	    
+	    <header>
+        <nav id="header-nav" class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+              <a class="navbar-brand href="#"><h2>Nordea Liv og Pension</h2></a>
+	   <button id="navbarToggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+		   </div>
+
+          <div id="collapsable-nav" class="collapse navbar-collapse">
+            <ul id="nav-list" class="nav navbar-nav navbar-right">
+              <li>
+                <a href="#">
+                  <span class="glyphicon glyphicon-home"></span><br class="hidden-xs"> Forside</a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="glyphicon glyphicon-info-sign"></span><br class="hidden-xs">Om Os</a>
+              </li>
+              <li class="active">
+                <a href="form.html">
+                  <span class="glyphicon glyphicon-envelope"></span><br class="hidden-xs">Kontakt Os</a>
+              </li>
+            </ul><!-- #nav-list -->
+          </div><!-- .collapse .navbar-collapse -->
+        </div><!-- .container -->
+      </nav><!-- #header-nav -->
+    </header>
            
            <!-- Start of Contact Form -->
-           <div id="form-container" class="container">
-    <form name="form" class="css-form" ng-hide="contact.$submitted" novalidate>
-    <label>Name:
-      <input type="text" ng-model="user.name" name="uName" maxlength="20"  pattern="[a-zA-Z]+" ng-pattern-restrict required />
-    </label>
-    <br />
-    <div ng-show="form.$submitted || form.uName.$touched">
-    <div ng-show="form.uName.$error.required">Enter your name</div>
-	    <div ng-show="form.uName.$error.correct">Only letters are allowed !</div>
-    </div>
-
-    <label>E-mail:
-      <input type="email" ng-model="user.email" name="uEmail" required="" />
-    </label>
-    <br />
-    <div ng-show="form.$submitted || form.uEmail.$touched">
-      <span ng-show="form.uEmail.$error.required">Tell us your email.</span>
-      <span ng-show="form.uEmail.$error.email">This is not a valid email.</span>
-    </div>
-
-    Gender:
-    <label><input type="radio" ng-model="user.gender" value="male" />male</label>
-    <label><input type="radio" ng-model="user.gender" value="female" />female</label>
-    <br />
-    <label>
-    <input type="checkbox" ng-model="user.agree" name="userAgree" required="" />
-
-    I agree:
-    </label>
-    <input ng-show="user.agree" type="text" ng-model="user.agreeSign" required="" />
-    <br />
-    <div ng-show="form.$submitted || form.userAgree.$touched">
-      <div ng-show="!user.agree || !user.agreeSign">Please agree and sign.</div>
-    </div>
-    <button type="reset"  class="btn btn-primary btn-large center"  ng-click="reset(form)" value="Reset">Reset</button>
-    <button name="submit" class="btn btn-primary btn-large center" type="submit" ng-disabled="contact.$invalid">Send</button>
-  </form>
+           
+		   <div id="form-wrapper" class="container">
+           <form name="contactForm" ng-submit="submitForm(contactForm.$valid)" ng-class="{'has-success' : contactForm.$valid}" ng-hide = "contactForm.$submitted" novalidate>
+          
+          <!-- ------------------------------User Details------------------------ -->
+           
+           
+           <!-- Name Input -->
+           <div class="form-group" ng-class="{ 'has-error' : contactForm.name.$invalid && !contactForm.name.$pristine }">
+         
+             <div class="input-div">
+					     <div class="input-icon">
+					     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					     <label for="name" name="name">Navn: </label>
+					     </div>
+					     <input id="name" class="form-control" type="text" ng-model="name" name="name" maxlength="20" placeholder="Navn" pattern="[a-zA-Z]+" ng-pattern-restrict required >
+		                     </div>
+                                     <p ng-show="contactForm.name.$invalid && !contactForm.name.$pristine" class="error-msg">Indtast dit fornavn uden mellemrum, tal eller symboler. </p>
+	                          
+		   </div>
+          
+          <!-- E-mail Input-->
+          <div class="form-group" ng-class="{ 'has-error' : contactForm.email.$invalid && !contactForm.email.$pristine }">
+				  <div class="input-div"> 
+			           <div class="input-icon">
+					     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+					     <label for="email">Email: </label>
+				             </div>
+					    <input id="email" class="form-control" type="email" ng-model="email" name="email" placeholder="Email" required>
+				    </div>
+				    <p ng-show="contactForm.email.$invalid && !contactForm.email.$pristine" class="error-msg">Skriv en gyldig e-mailadresse.</p>
+			   </div>
+         
+         <!-- Phone Input -->
+         
+         <div class="form-group" ng-class="{ 'error-msg' : contactForm.phone.$invalid && !contactForm.phone.$pristine }">
+				
+				<div class="input-div">
+					<div class="input-icon">
+					<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+					<label for="phone">Mobilnummer: </label>
+					</div>
+					<input id="phone" class="form-control" type="text" ng-model="phone" name="phone" placeholder="Feks. 91755748"  ng-pattern="nums" required >
+				</div>
+				<p ng-show="contactForm.phone.$error.pattern && !contactForm.phone.$pristine" class="error-msg">Skriv et gyldigt 8-digit telefonnummer</p>
+			</div>
+      
+      <!-- Message -->
+      
+      <div class="form-group" ng-class="{ 'error-msg' : contactForm.userMessage.$invalid && !contactForm.userMessage.$pristine, 'success' : contactForm.userMessage.$valid && !contactForm.userMessage.$pristine }">
+				
+                    <p ng-show="contactForm.userMessage.$error.minlength" class="help-block">Besked skal vare mindst 50 charachter lang.</p>
+					<p ng-show="contactForm.userMessage.$error.maxlength" class="help-block">Besked er forlang.</p>          
+		  <div class="input-div">
+				     <div class="input-icon">
+				     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+				    <label for="userMessage">Besked</label>
+				     </div>
+			        <textarea id="userMessage" ng-model="userMessage" name="userMessage" class="form-control" ng-minlength="50" ng-maxlength="200" rows="12" placeholder="Skriv besked her" required></textarea>
+	                        <span>{{200-userMessage.length}} left</span></div>
+	      </div>
+	      
+    
+     <!-- Button -->    
+                   <button name="submit" class="btn btn-primary btn-large center" type="submit" ng-disabled="contactForm.$invalid">Send</button>
+		   <button class="btn btn-primary btn-large center" type="reset" ng-click="reset()">Reset</button>
+	 
+	</form>
+  	</div>
     
     <!-- Confirmation Message -->
     <div id="submitMessage" class="container" ng-show="contactForm.$submitted">
