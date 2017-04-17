@@ -1,19 +1,23 @@
 body {
-	padding-top: 60px;
-	padding-bottom: 50px;
-	font-family: 'Roboto', sans-serif;
+	padding-top: 0px;
+	padding-bottom: 20px;
+	font-family: 'Oxygen', sans-serif;
 }
 
-#form-container h3{
+#form-container h1{
 	text-align: center;
 }
 
 form {
-	height: 300px;
-	width: 60%;
+	height: 200px;
+	width: 300px;
 	margin: 0 auto;
 
 }
+input.ng-invalid{
+	border: 1px solid red;
+}
+
 textarea {
 	resize: none;
 	overflow: auto;
@@ -21,6 +25,10 @@ textarea {
 
 #submitMessage {
 	text-align: center;
-	border: 2px solid #333;
+	border: 0px solid #333;
 	padding: 5%;
+}
+
+textarea.ng-invalid{
+	border: 1px solid red;
 }
