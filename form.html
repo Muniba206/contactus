@@ -89,7 +89,7 @@
 					<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
 					<label for="phone">Mobilnummer: </label>
 					</div>
-					<input id="phone" class="form-control" type="text" ng-model="phone" name="phone" placeholder="Feks. 91755748"  ng-pattern="nums" required >
+					<input id="phone" class="form-control" type="text" ng-model="phone" name="phone" placeholder="Feks. 91755748"  ng-pattern="/^[1-9]{1}[0-9]{7}$/" required >
 				</div>
 				<p ng-show="contactForm.phone.$error.pattern && !contactForm.phone.$pristine" class="error-msg">Skriv et gyldigt 8-digit telefonnummer</p>
 			</div>
